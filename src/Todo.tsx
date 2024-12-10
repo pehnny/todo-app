@@ -3,86 +3,74 @@ import {useState} from 'react'
 // import viteLogo from '/vite.svg'
 import './Todo.css'
 
-function Todo() {
+// type Task = {id: number, name: string, done: boolean};
+// type CheckTaskFunction = (id: number) => void;
+
+export function Todo() {
     return (
         <>
-            <TodoTitle/>
-            <TodoTask/>
+            <h1 className="title">Todo App</h1>
+            <TodoNewTask/>
             <TodoList/>
         </>
     )
 }
 
-function TodoTitle() {
+function TodoNewTask() {
     return (
-        <>
-            <h1 className="title">Todo App</h1>
-        </>
-    );
-}
-
-function TodoTask() {
-    return (
-        <>
-            <section className="task">
-                <TodoTaskInput/>
-                <TodoTaskButton/>
-            </section>
-        </>
-    )
-}
-
-function TodoTaskInput() {
-    return (
-        <>
+        <section className="task">
             <input type="text" placeholder="Entrez une nouvelle tâche"/>
-        </>
-    )
-}
-
-function TodoTaskButton() {
-    return (
-        <>
             <button type="button">Ajouter tâche</button>
-        </>
+        </section>
     )
 }
 
 function TodoList() {
-    const taskList = ["Apprendre React", "S'amuser", "Ajouter des événements"];
+    const taskList = [
+        {
+            id: 1,
+            name: "Apprendre React",
+            done: false
+        },
+        {
+            id: 2,
+            name: "S'amuser",
+            done: false
+        },
+        {
+            id: 3,
+            name: "Ajouter des événements",
+            done: false
+        }
+    ];
+
     const [tasks, setTask] = useState(taskList);
 
-    return (
-        <>
-            <section className="task-list">
-                <TodoListTitle/>
-                <ul>
-                    {tasks.map((task, id) => (
-                        <TodoListCheckbox task={task} id={id}/>
-                    ))}
-                </ul>
-            </section>
-        </>
-    )
-}
+    function handleCheck(id: number) {
+        const newTasks = tasks.map(task => {
+            if (task.id === id) {
+                task.done = !task.done;
+            }
+            return task;
+        });
+        setTask(newTasks);
+    }
 
-function TodoListTitle() {
     return (
-        <>
+        <section className="task-list">
             <h2>Tâches</h2>
-        </>
+            <ul>
+                {tasks.map((task) => (
+                    <li key={task.id}>
+                        <input type="checkbox"
+                               id={task.id.toString()}
+                               name={task.name}
+                               checked={task.done}
+                               onChange={() => handleCheck(task.id)}/>
+                        <label htmlFor={task.name}>{task.name}</label>
+                    </li>
+                ))}
+            </ul>
+        </section>
     )
 }
-
-function TodoListCheckbox({task, id}: { task: string, id: number },) {
-    return (
-        <>
-            <li key={id}>
-                <input type="checkbox" name={task}/>
-                <label htmlFor={task}>{task}</label>
-            </li>
-        </>
-    )
-}
-
-export default Todo
