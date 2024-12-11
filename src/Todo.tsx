@@ -5,6 +5,7 @@ import './Todo.css'
 
 type Task = { id: number, name: string, done: boolean };
 type NewTask = (name: string) => void;
+type UpdateTask = (id: number) => void;
 
 export function Todo() {
     const initTasks = [
@@ -16,23 +17,39 @@ export function Todo() {
         {
             id: 2,
             name: "Make this button to work",
-            done: false
+            done: true
+        },
+        {
+            id: 3,
+            name: "Make these checkboxes to work",
+            done: true
         }
     ]
     const [tasks, setTasks] = useState<Task[]>(initTasks);
 
     function handleNewTask(name: string) {
         const newTask: Task = {id: tasks.length + 1, name, done: false};
+
         setTasks([...tasks, newTask]);
     }
 
-    // TODO use same logic to update status from up here
+    function handleUpdatedTask(id: number) {
+        const updatedTasks = tasks.map(task => {
+            if (task.id === id) {
+                task.done = !task.done;
+            }
+            return task;
+        });
 
+        setTasks(updatedTasks);
+    }
+
+    console.log(...tasks);
     return (
         <>
             <h1 className="title">Todo App</h1>
             <TodoForm handleNewTask={handleNewTask}/>
-            <TodoList taskList={tasks}/>
+            <TodoList taskList={tasks} handleUpdatedTask={handleUpdatedTask}/>
         </>
     );
 }
@@ -40,7 +57,7 @@ export function Todo() {
 function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
     const inputRef = useRef<HTMLInputElement>(null);
 
-    function handleSubmit() {
+    function handleButton() {
         if (!inputRef.current?.value) {
             return;
         }
@@ -51,8 +68,8 @@ function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
             return;
         }
 
-        handleNewTask(newTask);
         inputRef.current.value = "";
+        handleNewTask(newTask);
     }
 
     return (
@@ -61,32 +78,14 @@ function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
                    name="newTask"
                    placeholder="Entrez une nouvelle tâche"
                    ref={inputRef}/>
-            <button type="button" onClick={handleSubmit}>Ajouter tâche</button>
+            <button type="button" onClick={handleButton}>Ajouter tâche</button>
         </section>
     );
 }
 
-function TodoList({taskList}: { taskList: Task[] }) {
-    // FIXME add event trigger on added tasks
-    const [tasks, setTaskState] = useState<Task[]>(taskList);
-
-    function handleCheck(update: Task) {
-        console.log(tasks);
-        if (tasks.length < taskList.length) {
-            console.log("hello");
-            setTaskState([...taskList]);
-        }
-        console.log(tasks);
-
-        const updatedTasks = tasks.map(task => {
-            if (task === update) {
-                task.done = !task.done;
-            }
-            return task;
-        });
-
-        setTaskState(updatedTasks);
-        console.log(...tasks);
+function TodoList({taskList, handleUpdatedTask}: { taskList: Task[], handleUpdatedTask: UpdateTask }) {
+    function handleInput(id: number) {
+        handleUpdatedTask(id);
     }
 
     return (
@@ -99,7 +98,7 @@ function TodoList({taskList}: { taskList: Task[] }) {
                                id={task.id.toString()}
                                name={task.name}
                                checked={task.done}
-                               onChange={() => handleCheck(task)}/>
+                               onChange={() => handleInput(task.id)}/>
                         <label htmlFor={task.name}>{task.name}</label>
                     </li>
                 ))}
