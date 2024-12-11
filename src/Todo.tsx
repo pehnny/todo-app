@@ -1,11 +1,10 @@
-import {useRef, useState} from 'react'
+import {useState} from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './Todo.css'
-
-type Task = { id: number, name: string, done: boolean };
-type NewTask = (name: string) => void;
-type UpdateTask = (id: number) => void;
+import {TodoList} from "./components/TodoList.tsx";
+import {TodoForm} from "./components/TodoForm.tsx";
+import {Task} from "./types/types.tsx";
 
 export function Todo() {
     const initTasks = [
@@ -54,55 +53,5 @@ export function Todo() {
     );
 }
 
-function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
-    const inputRef = useRef<HTMLInputElement>(null);
 
-    function handleButton() {
-        if (!inputRef.current?.value) {
-            return;
-        }
 
-        const newTask = inputRef.current.value.trim();
-
-        if (!newTask) {
-            return;
-        }
-
-        inputRef.current.value = "";
-        handleNewTask(newTask);
-    }
-
-    return (
-        <section className="task">
-            <input type="text"
-                   name="newTask"
-                   placeholder="Entrez une nouvelle tâche"
-                   ref={inputRef}/>
-            <button type="button" onClick={handleButton}>Ajouter tâche</button>
-        </section>
-    );
-}
-
-function TodoList({taskList, handleUpdatedTask}: { taskList: Task[], handleUpdatedTask: UpdateTask }) {
-    function handleInput(id: number) {
-        handleUpdatedTask(id);
-    }
-
-    return (
-        <section className="task-list">
-            <h2>Tâches</h2>
-            <ul>
-                {taskList.map((task) => (
-                    <li key={task.id}>
-                        <input type="checkbox"
-                               id={task.id.toString()}
-                               name={task.name}
-                               checked={task.done}
-                               onChange={() => handleInput(task.id)}/>
-                        <label htmlFor={task.name}>{task.name}</label>
-                    </li>
-                ))}
-            </ul>
-        </section>
-    );
-}
