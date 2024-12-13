@@ -1,4 +1,5 @@
 import {useRef} from "react";
+import {KeyboardEvent} from "react";
 import {NewTask} from "../types/types.tsx";
 
 export function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
@@ -9,14 +10,16 @@ export function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
             return;
         }
 
-        const newTask = inputRef.current.value.trim();
+        handleNewTask(inputRef.current.value);
+        inputRef.current.value = "";
+    }
 
-        if (!newTask) {
+    function handleInput(event: KeyboardEvent<HTMLInputElement>) {
+        if (event.key !== "Enter") {
             return;
         }
 
-        inputRef.current.value = "";
-        handleNewTask(newTask);
+        handleButton();
     }
 
     return (
@@ -24,7 +27,8 @@ export function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
             <input type="text"
                    name="newTask"
                    placeholder="Entrez une nouvelle tâche"
-                   ref={inputRef}/>
+                   ref={inputRef}
+                   onKeyUp={(event) => handleInput(event)}/>
             <button type="button" onClick={handleButton}>Ajouter tâche</button>
         </section>
     );
