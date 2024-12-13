@@ -12,26 +12,19 @@ import {loadLocalStorageID} from "./localStorage/loadLocalStorageID.tsx";
 export function Todo() {
     const [tasks, setTasks] = useState<Task[]>(loadLocalStorageOngoingTasks);
 
-    const maxID = Math.max(...tasks.map(task => task.id), 0);
-    const [id, setId] = useState(() => loadLocalStorageID(maxID));
+    const maxID = Math.max(...tasks.map(task => task.id), 0) + 1;
+    const [ID, setID] = useState(() => loadLocalStorageID(maxID));
 
-    useEffect(() => saveLocalStorageData(tasks, id), [tasks, id]);
+    useEffect(() => saveLocalStorageData(tasks, ID), [tasks, ID]);
 
     function handleNewTask(name: string) {
-        const newId = id + 1;
-        const newTask: Task = {id: newId, name, done: false};
-
-        setId(newId);
-        setTasks([...tasks, newTask]);
+        setID(ID + 1);
+        setTasks([...tasks, {id: ID + 1, name, done: false}]);
     }
 
-    function handleUpdatedTask(id: number) {
+    function handleUpdateTask(taskID: number) {
         const updatedTasks = tasks.map(task => {
-            if (task.id === id) {
-                task.done = !task.done;
-            }
-
-            return task;
+            return task.id === taskID ? {...task, done: !task.done} : task;
         });
 
         setTasks(updatedTasks);
@@ -42,7 +35,7 @@ export function Todo() {
         <>
             <h1 className="title">Todo App</h1>
             <TodoForm handleNewTask={handleNewTask}/>
-            <TodoList taskList={tasks} handleUpdatedTask={handleUpdatedTask}/>
+            <TodoList taskList={tasks} handleUpdatedTask={handleUpdateTask}/>
         </>
     );
 }
