@@ -1,5 +1,4 @@
 export enum LocalStorageKeys {
-    Ongoing = "Ongoing",
-    Done = "Done",
+    Tasks = "Tasks",
     ID = "ID",
 }
