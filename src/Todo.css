@@ -2,16 +2,30 @@ main {
     display: grid;
     grid-auto-flow: row;
     grid-gap: 2rem;
-    place-items: start;
+    place-items: center;
     margin: 2rem;
 
-    .task {
+    .title {
         display: grid;
-        grid-auto-flow: row;
+        grid-auto-flow: column;
         grid-gap: 1rem;
+        place-items: center;
+        font-size: x-large;
+    }
+
+    .task-form {
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: 2rem;
         width: fit-content;
 
         input {
+            padding: 0.5rem;
+            border-radius: 15px;
+        }
+
+        .task-type {
+            width: fit-content;
             padding: 0.5rem;
             border-radius: 15px;
         }
@@ -25,25 +39,65 @@ main {
 
     .task-list {
         display: grid;
-        grid-auto-flow: row;
-        grid-gap: 1rem;
-        width: fit-content;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "title title title"
+            "domestique loisir travail"
+            "button button button";
+        grid-row-gap: 1rem;
+        grid-column-gap: 3rem;
+        justify-items: center;
+        /*width: fit-content;*/
+
+        h2 {
+            grid-area: title;
+        }
+
+        .task-list-domestique {
+            grid-area: domestique;
+        }
+
+        .task-list-loisir {
+            grid-area: loisir;
+        }
+
+        .task-list-travail {
+            grid-area: travail;
+        }
+
+        button {
+            grid-area: button;
+        }
 
         ul {
             list-style: none;
             display: grid;
             grid-auto-flow: row;
+            grid-template-columns: subgrid;
             grid-gap: 0.5rem;
-            justify-items: start;
-            align-items: center;
+            /*justify-items: start;*/
+            /*align-items: start;*/
+            width: fit-content;
+            height: fit-content;
+
+            h3 {
+                justify-self: center;
+            }
 
             li {
                 display: grid;
-                grid-auto-flow: column;
+                grid-template-columns: auto;
+                grid-template-rows: subgrid;
                 grid-gap: 1rem;
+                width: fit-content;
 
                 input {
                     width: 1rem;
+                }
+
+                label {
+                    width: 200px;
+                    word-break: break-all;
                 }
 
                 button {
@@ -65,6 +119,24 @@ main {
             width: fit-content;
             padding: 0.25rem;
             border-radius: 15px;
+        }
+    }
+
+    .task-counter {
+        display: grid;
+        grid-auto-flow: row;
+        grid-gap: 1rem;
+        place-items: center;
+
+        p {
+            background-color: midnightblue;
+            width: 3rem;
+            aspect-ratio: 2.0;
+            border: 2px solid dimgray;
+            border-radius: 15px;
+            padding: 0.5rem;
+            text-align: center;
+            font-weight: bold;
         }
     }
 }
