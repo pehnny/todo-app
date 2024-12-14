@@ -1,16 +1,18 @@
 import {useRef} from "react";
 import {KeyboardEvent} from "react";
 import {NewTask} from "../types/types.tsx";
+import {TaskType} from "../taskTypes/TaskType.tsx";
 
 export function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
     const inputRef = useRef<HTMLInputElement>(null);
+    const selectRef = useRef<HTMLSelectElement>(null);
 
     function handleButton() {
-        if (!inputRef.current?.value) {
+        if (!inputRef.current?.value || !selectRef.current?.value) {
             return;
         }
 
-        handleNewTask(inputRef.current.value);
+        handleNewTask(inputRef.current.value, selectRef.current.value as TaskType);
         inputRef.current.value = "";
     }
 
@@ -23,13 +25,18 @@ export function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
     }
 
     return (
-        <section className="task">
+        <section className="task-form">
+            <select className="task-type" name="type" ref={selectRef}>
+                {Object.values(TaskType).map((taskType: TaskType) => (
+                    <option key={taskType}>{taskType}</option>
+                ))}
+            </select>
             <input type="text"
                    name="newTask"
                    placeholder="Entrez une nouvelle tâche"
                    ref={inputRef}
                    onKeyUp={(event) => handleInput(event)}/>
-            <button type="button" onClick={handleButton}>Ajouter tâche</button>
+            <button type="button" onClick={handleButton}>Ajouter une tâche</button>
         </section>
     );
 }
