@@ -3,7 +3,8 @@ main {
     grid-auto-flow: row;
     grid-gap: 2rem;
     place-items: center;
-    margin: 2rem;
+    width: 80%;
+    margin: auto;
 
     .title {
         display: grid;
@@ -39,77 +40,63 @@ main {
 
     .task-list {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-areas:
-            "title title title"
-            "domestique loisir travail"
-            "button button button";
+        grid-auto-flow: row;
         grid-row-gap: 1rem;
         grid-column-gap: 3rem;
         justify-items: center;
-        /*width: fit-content;*/
+        width: 100%;
 
-        h2 {
-            grid-area: title;
-        }
-
-        .task-list-domestique {
-            grid-area: domestique;
-        }
-
-        .task-list-loisir {
-            grid-area: loisir;
-        }
-
-        .task-list-travail {
-            grid-area: travail;
-        }
-
-        button {
-            grid-area: button;
-        }
-
-        ul {
-            list-style: none;
+        .task-list-type {
             display: grid;
-            grid-auto-flow: row;
-            grid-template-columns: subgrid;
-            grid-gap: 0.5rem;
-            /*justify-items: start;*/
-            /*align-items: start;*/
-            width: fit-content;
-            height: fit-content;
+            /*TodoList.tsx*/
+            /*grid-template-columns: repeat(Object.values(TaskType).length, 1fr);*/
+            grid-template-rows: subgrid;
+            grid-row-gap: 1rem;
+            grid-column-gap: 3rem;
+            justify-items: center;
+            width: 100%;
 
-            h3 {
-                justify-self: center;
-            }
-
-            li {
+            ul {
+                list-style: none;
                 display: grid;
-                grid-template-columns: auto;
-                grid-template-rows: subgrid;
-                grid-gap: 1rem;
-                width: fit-content;
+                grid-auto-flow: row;
+                grid-template-columns: subgrid;
+                grid-gap: 0.5rem;
+                height: fit-content;
 
-                input {
-                    width: 1rem;
+                h3 {
+                    justify-self: center;
                 }
 
-                label {
-                    width: 200px;
-                    word-break: break-all;
-                }
+                li {
+                    display: grid;
+                    grid-template-columns: 1rem auto 1rem;
+                    grid-template-rows: subgrid;
+                    grid-gap: 1rem;
+                    width: 100%;
 
-                button {
-                    color: darkred;
-                    background-color: inherit;
-                    border: none;
-                    padding: 0;
-                    margin: 0;
-                    font-size: 100%;
+                    label {
+                        grid-column: 2;
+                        word-break: break-all;
+                    }
 
-                    &:hover {
-                        color: red;
+                    input {
+                        grid-column: 1;
+                        width: 100%;
+                    }
+
+                    button {
+                        grid-column: 3;
+                        color: darkred;
+                        background-color: inherit;
+                        border: none;
+                        padding: 0;
+                        margin: 0;
+                        font-size: x-large;
+
+                        &:hover {
+                            color: red;
+                        }
                     }
                 }
             }
