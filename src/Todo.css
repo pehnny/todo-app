@@ -1,3 +1,8 @@
+body {
+    background-color: light-dark(var(--light-main-bg-color), var(--dark-main-bg-color));
+    min-height: 100vh;
+}
+
 main {
     display: grid;
     grid-auto-flow: row;
@@ -5,6 +10,24 @@ main {
     place-items: center;
     width: 80%;
     margin: auto;
+    color: light-dark(var(--light-font-color), var(--dark-font-color));
+
+    button, input, select {
+        background-color: light-dark(var(--light-ternary-bg-color), var(--dark-ternary-bg-color));
+        border-color: light-dark(var(--light-border-bg-color), var(--dark-border-bg-color));
+
+        &:hover {
+            background-color: light-dark(var(--light-main-bg-color), var(--dark-main-bg-color));
+        }
+    }
+
+    button:active {
+        background-color: light-dark(var(--light-secondary-bg-color), var(--dark-secondary-bg-color));
+    }
+
+    input:focus {
+        background-color: light-dark(var(--light-main-bg-color), var(--dark-main-bg-color));
+    }
 
     .title {
         display: grid;
@@ -45,6 +68,10 @@ main {
         grid-column-gap: 3rem;
         justify-items: center;
         width: 100%;
+        background-color: light-dark(var(--light-secondary-bg-color), var(--dark-secondary-bg-color));
+        border: 1px solid light-dark(var(--light-border-bg-color), var(--dark-border-bg-color));
+        border-radius: 15px;
+        padding: 1rem;
 
         .task-list-type {
             display: grid;
@@ -55,47 +82,55 @@ main {
             grid-column-gap: 3rem;
             justify-items: center;
             width: 100%;
+            height: fit-content;
 
             ul {
                 list-style: none;
                 display: grid;
-                grid-auto-flow: row;
                 grid-template-columns: subgrid;
-                grid-gap: 0.5rem;
-                height: fit-content;
+                background-color: light-dark(var(--light-main-bg-color), var(--dark-main-bg-color));
+                border: 1px solid light-dark(var(--light-border-bg-color), var(--dark-border-bg-color));
+                border-radius: 15px;
+                padding: 1rem;
 
-                h3 {
-                    justify-self: center;
-                }
-
-                li {
+                article {
                     display: grid;
-                    grid-template-columns: 1rem auto 1rem;
-                    grid-template-rows: subgrid;
-                    grid-gap: 1rem;
-                    width: 100%;
+                    grid-auto-flow: row;
+                    height: fit-content;
 
-                    label {
-                        grid-column: 2;
-                        word-break: break-all;
+                    h3 {
+                        justify-self: center;
                     }
 
-                    input {
-                        grid-column: 1;
+                    li {
+                        display: grid;
+                        grid-template-columns: 1rem auto 1rem;
+                        grid-template-rows: subgrid;
+                        grid-gap: 1rem;
                         width: 100%;
-                    }
 
-                    button {
-                        grid-column: 3;
-                        color: darkred;
-                        background-color: inherit;
-                        border: none;
-                        padding: 0;
-                        margin: 0;
-                        font-size: x-large;
+                        label {
+                            grid-column: 2;
+                            word-break: break-all;
+                        }
 
-                        &:hover {
-                            color: red;
+                        input {
+                            grid-column: 1;
+                            width: 100%;
+                        }
+
+                        button {
+                            grid-column: 3;
+                            color: darkred;
+                            background-color: inherit;
+                            border: none;
+                            padding: 0;
+                            margin: 0;
+                            font-size: x-large;
+
+                            &:hover {
+                                color: red;
+                            }
                         }
                     }
                 }
@@ -116,10 +151,10 @@ main {
         place-items: center;
 
         p {
-            background-color: midnightblue;
             width: 3rem;
             aspect-ratio: 2.0;
-            border: 2px solid dimgray;
+            background-color: light-dark(var(--light-secondary-bg-color), var(--dark-secondary-bg-color));
+            border: 2px solid light-dark(var(--light-border-bg-color), var(--dark-border-bg-color));
             border-radius: 15px;
             padding: 0.5rem;
             text-align: center;

@@ -14,21 +14,23 @@ export function TodoList({taskList, handleUpdateTask, handleDeleteTask, handleDe
                      style={{gridTemplateColumns: `repeat(${Object.values(TaskType).length}, 1fr)`}}>
                 {Object.values(TaskType).map((taskType: TaskType) => (
                     <ul key={taskType} className={`task-list-type-${taskType}`}>
-                        <h3>{taskType}</h3>
-                        {taskList
-                            .filter((task: Task) => (task.type === taskType))
-                            .map((task: Task) => (
-                                <li key={task.id}>
-                                    <label htmlFor={`${task.id}-${task.name}`}>{task.name}</label>
-                                    <input type="checkbox"
-                                           id={task.id.toString()}
-                                           name={`${task.id}-${task.name}`}
-                                           checked={task.done}
-                                           onChange={() => handleUpdateTask(task.id)}/>
-                                    <button type="button" onClick={() => handleDeleteTask(task.id)}>x</button>
-                                </li>
-                            ))
-                        }
+                        <article>
+                            <h3>{taskType}</h3>
+                            {taskList
+                                .filter((task: Task) => (task.type === taskType))
+                                .map((task: Task) => (
+                                    <li key={task.id}>
+                                        <label htmlFor={`${task.id}-${task.name}`}>{task.name}</label>
+                                        <input type="checkbox"
+                                               id={task.id.toString()}
+                                               name={`${task.id}-${task.name}`}
+                                               checked={task.done}
+                                               onChange={() => handleUpdateTask(task.id)}/>
+                                        <button type="button" onClick={() => handleDeleteTask(task.id)}>x</button>
+                                    </li>
+                                ))
+                            }
+                        </article>
                     </ul>
                 ))}
             </section>

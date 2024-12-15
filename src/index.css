@@ -17,6 +17,21 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    --light-main-bg-color: hsl(210, 100%, 90%);
+    --dark-main-bg-color: hsl(210, 100%, 10%);
+
+    --light-secondary-bg-color: hsl(210, 100%, 80%);
+    --dark-secondary-bg-color: hsl(210, 100%, 20%);
+
+    --light-ternary-bg-color: hsl(210, 50%, 80%);
+    --dark-ternary-bg-color: hsl(210, 50%, 20%);
+
+    --light-border-bg-color: var(--dark-secondary-bg-color);
+    --dark-border-bg-color: var(--light-secondary-bg-color);
+
+    --light-font-color: var(--dark-main-bg-color);
+    --dark-font-color: var(--light-main-bg-color);
 }
 
 @media (prefers-color-scheme: light) {
