@@ -26,17 +26,24 @@ export function TodoForm({handleNewTask}: { handleNewTask: NewTask }) {
 
     return (
         <section className="task-form">
-            <select className="task-type" name="type" ref={selectRef}>
+            <select className="task-form-select"
+                    name="type"
+                    ref={selectRef}>
                 {Object.values(TaskType).map((taskType: TaskType) => (
                     <option key={taskType}>{taskType}</option>
                 ))}
             </select>
-            <input type="text"
+            <input className="task-form-input"
+                   type="text"
                    name="newTask"
                    placeholder="Entrez une nouvelle tâche"
                    ref={inputRef}
                    onKeyUp={(event) => handleInput(event)}/>
-            <button type="button" onClick={handleButton}>Ajouter une tâche</button>
+            <button className="task-form-button"
+                    type="button"
+                    onClick={handleButton}>
+                Ajouter une tâche
+            </button>
         </section>
     );
 }

@@ -13,25 +13,29 @@
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
 
+    --hue: 38;
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    --light-main-bg-color: hsl(var(--hue), 100%, 95%);
+    --dark-main-bg-color: hsl(var(--hue), 100%, 5%);
 
-    --light-main-bg-color: hsl(210, 100%, 90%);
-    --dark-main-bg-color: hsl(210, 100%, 10%);
+    --light-secondary-bg-color: hsl(var(--hue), 100%, 60%);
+    --dark-secondary-bg-color: hsl(var(--hue), 100%, 40%);
 
-    --light-secondary-bg-color: hsl(210, 100%, 80%);
-    --dark-secondary-bg-color: hsl(210, 100%, 20%);
-
-    --light-ternary-bg-color: hsl(210, 50%, 80%);
-    --dark-ternary-bg-color: hsl(210, 50%, 20%);
+    --light-ternary-bg-color: hsl(var(--hue), 100%, 75%);
+    --dark-ternary-bg-color: hsl(var(--hue), 100%, 25%);
 
     --light-border-bg-color: var(--dark-secondary-bg-color);
     --dark-border-bg-color: var(--light-secondary-bg-color);
 
-    --light-font-color: var(--dark-main-bg-color);
-    --dark-font-color: var(--light-main-bg-color);
+    --light-font-color: black;
+    --dark-font-color: white;
+
+    --border: 2px solid light-dark(var(--dark-secondary-bg-color), var(--light-secondary-bg-color));
+    --border-radius: 15px;
 }
 
 @media (prefers-color-scheme: light) {

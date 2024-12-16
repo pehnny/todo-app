@@ -3,7 +3,7 @@ import {createRoot} from 'react-dom/client'
 import './index.css'
 import {Todo} from './Todo.tsx'
 
-createRoot(document.querySelector("main")!).render(
+createRoot(document.querySelector("body")!).render(
     <StrictMode>
         <Todo/>
     </StrictMode>,

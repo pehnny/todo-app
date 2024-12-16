@@ -1,5 +1,5 @@
 export enum TaskType {
-    Domestic = "domestique",
-    Hobby = "loisir",
-    Work = "travail"
+    Domestic = "Domestique",
+    Hobby = "Loisir",
+    Work = "Travail"
 }
