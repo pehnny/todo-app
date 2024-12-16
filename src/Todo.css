@@ -1,9 +1,12 @@
 body {
-    background-color: light-dark(var(--light-main-bg-color), var(--dark-main-bg-color));
-    color: light-dark(var(--light-font-color), var(--dark-font-color));
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+
+    #root {
+        background-color: light-dark(var(--light-main-bg-color), var(--dark-main-bg-color));
+        color: light-dark(var(--light-font-color), var(--dark-font-color));
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        min-height: 100vh;
+    }
 
     button, input, select {
         background-color: light-dark(var(--light-ternary-bg-color), var(--dark-ternary-bg-color));
@@ -49,13 +52,12 @@ body {
 
         .task-form {
             display: grid;
-            grid-auto-flow: column;
-            grid-template-rows: subgrid;
+            grid-auto-flow: row;
+            place-items: center;
             grid-gap: 2rem;
 
             .task-form-select {
-                justify-self: end;
-                width: fit-content;
+                /*justify-self: end;*/
                 border-radius: var(--border-radius);
             }
 
@@ -65,8 +67,7 @@ body {
             }
 
             .task-form-button {
-                justify-self: start;
-                width: fit-content;
+                /*justify-self: start;*/
                 padding: 0.25rem;
                 border-radius: var(--border-radius);
             }
@@ -82,9 +83,7 @@ body {
 
             .task-list-type {
                 display: grid;
-                /*TodoList.tsx*/
-                /*grid-template-columns: repeat(Object.values(TaskType).length, 1fr);*/
-                grid-template-rows: subgrid;
+                grid-auto-flow: row;
                 grid-row-gap: 1rem;
                 grid-column-gap: 3rem;
                 justify-items: center;
@@ -178,5 +177,31 @@ body {
         place-items: center;
         background-color: light-dark(var(--light-secondary-bg-color), var(--dark-secondary-bg-color));
         padding: 0.5rem;
+    }
+}
+
+@media screen and (800px <= width) {
+    body {
+        main {
+            .task-form {
+                grid-auto-flow: column;
+                place-items: unset;
+
+                .task-form-select {
+                    justify-self: end;
+                }
+
+                .task-form-button {
+                    justify-self: start;
+                }
+            }
+
+            .task-list {
+                .task-list-type {
+                    grid-auto-flow: unset;
+                    grid-template-columns: repeat(var(--task-type-count), 1fr);
+                }
+            }
+        }
     }
 }
