@@ -10,13 +10,12 @@ export function TodoList({taskList, handleUpdateTask, handleDeleteTask, handleDe
     return (
         <section className="task-list">
             <h2 className="task-list-title">Tâches</h2>
-            <section className="task-list-type"
-                     style={{gridTemplateColumns: `repeat(${Object.values(TaskType).length}, 1fr)`}}>
+            <section className="task-list-type">
                 {Object.values(TaskType).map((taskType: TaskType) => (
-                    <article className={`task-list-type-${taskType}-container`}>
+                    <article className={`task-list-type-${taskType}-container`}
+                             key={taskType}>
                         <h2 className={`task-list-type-${taskType}-title`}>{taskType}</h2>
-                        <ul key={taskType}
-                            className={`task-list-type-${taskType}`}>
+                        <ul className={`task-list-type-${taskType}`}>
                             {taskList
                                 .filter((task: Task) => (task.type === taskType))
                                 .map((task: Task) => (
