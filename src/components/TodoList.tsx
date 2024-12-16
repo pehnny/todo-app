@@ -13,10 +13,10 @@ export function TodoList({taskList, handleUpdateTask, handleDeleteTask, handleDe
             <section className="task-list-type"
                      style={{gridTemplateColumns: `repeat(${Object.values(TaskType).length}, 1fr)`}}>
                 {Object.values(TaskType).map((taskType: TaskType) => (
-                    <ul key={taskType}
-                        className={`task-list-type-${taskType}`}>
-                        <article className={`task-list-type-${taskType}-container`}>
-                            <h2 className={`task-list-type-${taskType}-title`}>{taskType}</h2>
+                    <article className={`task-list-type-${taskType}-container`}>
+                        <h2 className={`task-list-type-${taskType}-title`}>{taskType}</h2>
+                        <ul key={taskType}
+                            className={`task-list-type-${taskType}`}>
                             {taskList
                                 .filter((task: Task) => (task.type === taskType))
                                 .map((task: Task) => (
@@ -38,8 +38,8 @@ export function TodoList({taskList, handleUpdateTask, handleDeleteTask, handleDe
                                     </li>
                                 ))
                             }
-                        </article>
-                    </ul>
+                        </ul>
+                    </article>
                 ))}
             </section>
             <button onClick={handleDeleteDoneTasks}>Retirer les tâches complétées</button>
