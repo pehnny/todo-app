@@ -43,7 +43,7 @@ export function Todo() {
                 <img src={reactLogo} className="logo react" alt="React logo"/>
                 <h1>Todo App</h1>
             </header>
-            <main style={{"--task-type-count": Object.values(TaskType).length}}>
+            <main>
                 <TodoForm handleNewTask={handleNewTask}/>
                 <TodoList taskList={tasks}
                           handleUpdateTask={handleUpdateTask}
