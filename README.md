@@ -1,50 +1,26 @@
-# React + TypeScript + Vite
+# Presentation
+Single page todo app with 3 categories for work, hobbies and domestic labor. 
+The application is responsive, it has light and dark themes and horrible orange tones ;)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Requirements
+- JavaScript execution environment like [node](https://nodejs.org/en), [deno](https://deno.com/) or [bun](https://bun.sh/) (**node** prefered)
+- [npm](https://www.npmjs.com/) (included with both node and deno)
+- This repo ;)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+At the root of the repository, open a terminal and use the command :
+```sh
+npm i
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+# Launch
+Still at the root of the repository, after you installed the dependencies use the command :
+```sh
+npm run dev
+```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+# Building and testing
+If you want to try the app on it's full potential, you can build and preview it :
+```sh
+npm run build
+npm run preview
 ```
