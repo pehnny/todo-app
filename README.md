@@ -29,3 +29,5 @@ Also useful if you want to deploy it with your own solution.
 
 # Vercel
 Fortunately, you can try the app without any installments thanks to a vercel solution <https://todo-app-mocha-sigma-61.vercel.app/>
+
+**!! Warning : the UI is written in French !**
