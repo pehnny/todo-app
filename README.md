@@ -1,5 +1,5 @@
 # Presentation
-Single page todo app with 3 categories for work, hobbies and domestic labor. 
+Single page [React](https://fr.react.dev/) todo app with 3 categories for work, hobbies and domestic labor. 
 The application is responsive, it has light and dark themes and horrible orange tones ;)
 
 # Requirements
@@ -17,7 +17,7 @@ Still at the root of the repository, after you installed the dependencies use th
 ```sh
 npm run dev
 ```
-to run the Vite server. Now, you can try the app and modify it live.
+to run the [Vite](https://vite.dev/) server. Now, you can try the app and modify it live.
 
 # Building and testing
 If you want to try the app on it's full potential, you can build and preview it :
